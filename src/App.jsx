@@ -1,39 +1,79 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import WhyChooseUs from "./components/WhyChooseUs";
-import Services from "./components/Services";
 import Footer from "./components/Footer";
+
+import WhyChooseUs from "./components/WhyChooseUs";
 import Emergency from "./components/Emergency";
+
+import Services from "./pages/Services";
+import Repairs from "./pages/Repairs";
+import MOT from "./pages/MOT";
+import Areas from "./pages/Areas";
+import Contact from "./pages/Contact";
+
+function Home() {
+  return (
+    <>
+      <Hero />
+
+      <WhyChooseUs />
+
+      <Emergency />
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="bg-[#0D0D0D] text-white min-h-screen overflow-x-hidden">
-      <Navbar />
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <div className="bg-[#0D0D0D] text-white min-h-screen overflow-x-hidden">
 
-      <main>
-        <Hero />
+        <Navbar />
 
-        <WhyChooseUs />
+        <main>
+          <Routes>
 
-        <Services />
+            {/* Home Page */}
+            <Route 
+              path="/" 
+              element={<Home />} 
+            />
 
-        <Emergency />
+            {/* SEO Pages */}
+            <Route 
+              path="/services" 
+              element={<Services />} 
+            />
 
-        {/* Gallery Component */}
+            <Route 
+              path="/repairs" 
+              element={<Repairs />} 
+            />
 
-        {/* Emergency Call Out */}
+            <Route 
+              path="/mot" 
+              element={<MOT />} 
+            />
 
-        {/* Areas Covered */}
+            <Route 
+              path="/areas-covered" 
+              element={<Areas />} 
+            />
 
-        {/* Google Reviews */}
+            <Route 
+              path="/contact" 
+              element={<Contact />} 
+            />
 
-        {/* FAQ */}
+          </Routes>
+        </main>
 
-        {/* Contact Form */}
-      </main>
+        <Footer />
 
-      <Footer />
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
